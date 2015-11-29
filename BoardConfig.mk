@@ -1,0 +1,237 @@
+#
+# Copyright (C) 2015 The CyanogenMod Project
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
+BOARD_VENDOR := samsung 
+TARGET_SPECIFIC_HEADER_PATH := device/samsung/a9/include
+
+# Bootloader
+TARGET_NO_BOOTLOADER := true
+TARGET_BOOTLOADER_BOARD_NAME := msm8952
+
+# Platform
+TARGET_BOARD_PLATFORM := msm8952
+TARGET_BOARD_PLATFORM_GPU := qcom-adreno510
+
+# Architecture
+TARGET_NO_KERNEL := false
+TARGET_CPU_CORTEX_A53 := true
+TARGET_BOARD_SUFFIX := _64
+TARGET_USES_64_BIT_BINDER := true
+
+TARGET_ARCH := arm64
+TARGET_ARCH_VARIANT := armv8-a
+TARGET_CPU_ABI := arm64-v8a
+TARGET_CPU_ABI2 :=
+TARGET_CPU_VARIANT := generic
+
+TARGET_2ND_ARCH := arm
+TARGET_2ND_ARCH_VARIANT := armv7-a-neon
+TARGET_2ND_CPU_ABI := armeabi-v7a
+TARGET_2ND_CPU_ABI2 := armeabi
+TARGET_2ND_CPU_VARIANT := cortex-a53
+
+# Kernel
+BOARD_CUSTOM_BOOTIMG_MK := device/samsung/a9/mkbootimg.mk
+BOARD_KERNEL_CMDLINE := console=ttyHSL0,115200,n8 androidboot.console=ttyHSL0 androidboot.hardware=qcom msm_rtb.filter=0x237 ehci-hcd.park=3 androidboot.bootdevice=7824900.sdhci lpm_levels.sleep_disabled=1 earlyprintk
+BOARD_KERNEL_SEPARATED_DT := true
+BOARD_KERNEL_BASE        := 0x80000000
+BOARD_KERNEL_PAGESIZE    := 2048
+BOARD_KERNEL_TAGS_OFFSET := 0x01E00000
+BOARD_RAMDISK_OFFSET     := 0x02000000
+TARGET_KERNEL_ARCH := arm64
+TARGET_KERNEL_HEADER_ARCH := arm64
+TARGET_KERNEL_SOURCE := #TODO: Add me
+TARGET_KERNEL_CONFIG := #TODO: Add me
+TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
+TARGET_USES_UNCOMPRESSED_KERNEL := false
+
+# Qualcomm
+TARGET_USES_QCOM_BSP := true
+BOARD_USES_QCOM_HARDWARE := true
+BOARD_USES_QC_TIME_SERVICES := true
+
+# ANT+ #TODO: Do I ?
+BOARD_ANT_WIRELESS_DEVICE := "vfs-prerelease"
+
+# Audio #TODO: Filter me
+AUDIO_FEATURE_ENABLED_ACDB_LICENSE := true
+AUDIO_FEATURE_ENABLED_COMPRESS_CAPTURE := true
+AUDIO_FEATURE_ENABLED_COMPRESS_VOIP := true
+AUDIO_FEATURE_ENABLED_DS2_DOLBY_DAP := true
+AUDIO_FEATURE_ENABLED_EXTN_FORMATS := true
+AUDIO_FEATURE_ENABLED_FLAC_OFFLOAD := true
+AUDIO_FEATURE_ENABLED_FLUENCE := true
+AUDIO_FEATURE_ENABLED_HFP := true
+AUDIO_FEATURE_ENABLED_INCALL_MUSIC := true
+AUDIO_FEATURE_ENABLED_KPI_OPTIMIZE := true
+AUDIO_FEATURE_ENABLED_LOW_LATENCY_CAPTURE := true
+AUDIO_FEATURE_ENABLED_MULTI_VOICE_SESSIONS := true
+AUDIO_FEATURE_ENABLED_PCM_OFFLOAD := true
+AUDIO_FEATURE_ENABLED_PCM_OFFLOAD_24 := true
+AUDIO_FEATURE_ENABLED_PROXY_DEVICE := true
+AUDIO_FEATURE_LOW_LATENCY_PRIMARY := true
+BOARD_SUPPORTS_SOUND_TRIGGER := false
+BOARD_USES_ALSA_AUDIO := true
+
+# Bluetooth
+BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/a9/bluetooth
+BOARD_HAVE_BLUETOOTH := true
+BOARD_HAVE_BLUETOOTH_QCOM := true
+BOARD_HAVE_BLUETOOTH_BCM := true #TODO: Do I ?
+
+# Camera
+BOARD_QTI_CAMERA_32BIT_ONLY := true
+USE_DEVICE_SPECIFIC_CAMERA  := true
+TARGET_USE_VENDOR_CAMERA_EXT := true
+
+# Charger
+BOARD_CHARGER_ENABLE_SUSPEND := true
+BOARD_CHARGER_DISABLE_INIT_BLANK := true
+
+# CM Hardware #TODO: Add me
+
+# CSVT
+TARGET_USES_CSVT := true
+
+# Display
+NUM_FRAMEBUFFER_SURFACE_BUFFERS := 3
+TARGET_USES_ION := true
+TARGET_USES_NEW_ION_API :=true
+MAX_EGL_CACHE_KEY_SIZE := 12*1024
+MAX_EGL_CACHE_SIZE := 2048*1024
+BOARD_EGL_CFG := device/qcom/msm8952_64/egl.cfg
+TARGET_USES_C2D_COMPOSITION := true
+TARGET_USES_OVERLAY := true
+USE_OPENGL_RENDERER := true
+HAVE_ADRENO_SOURCE:= false
+OVERRIDE_RS_DRIVER:= libRSDriver_adreno.so
+
+# dlmalloc
+MALLOC_IMPL := dlmalloc
+
+# FM
+TARGET_QCOM_NO_FM_FIRMWARE := true
+AUDIO_FEATURE_ENABLED_FM := true
+
+# Fonts
+EXTENDED_FONT_FOOTPRINT := true
+
+# GPS
+TARGET_GPS_HAL_PATH := device/samsung/a9/gps
+TARGET_NO_RPC := true
+
+# HW Encryption
+TARGET_HW_DISK_ENCRYPTION := true
+
+# Init
+TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
+TARGET_RECOVERY_UPDATER_LIBS += librecovery_updater_msm
+TARGET_INIT_VENDOR_LIB := libinit_msm
+
+# Lights
+#TARGET_PROVIDES_LIBLIGHT := true #TODO: Add me
+
+# NFC
+BOARD_HAVE_NFC := true
+
+# PCI RCS
+TARGET_USES_PCI_RCS := false
+
+# Partitons
+TARGET_USERIMAGES_USE_EXT4 := true
+TARGET_USE_MDTP := true
+BOARD_BOOTIMAGE_PARTITION_SIZE := 0x04000000
+BOARD_RECOVERYIMAGE_PARTITION_SIZE := 0x04000000
+BOARD_SYSTEMIMAGE_PARTITION_SIZE := 2684354560
+BOARD_USERDATAIMAGE_PARTITION_SIZE := 10737418240
+BOARD_CACHEIMAGE_PARTITION_SIZE := 268435456
+BOARD_CACHEIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_PERSISTIMAGE_PARTITION_SIZE := 33554432
+BOARD_PERSISTIMAGE_FILE_SYSTEM_TYPE := ext4
+BOARD_FLASH_BLOCK_SIZE := 131072 # (BOARD_KERNEL_PAGESIZE * 64)
+
+# Peripheral Manager
+TARGET_PER_MGR_ENABLED := true
+
+# Properties
+TARGET_SYSTEM_PROP := device/samsung/a9/system.prop
+
+# Protobuf
+PROTOBUF_SUPPORTED := true
+
+# Radio
+ADD_RADIO_FILES := true
+
+# Sensors
+USE_SENSOR_MULTI_HAL := true
+
+# TWRP
+BOARD_CUSTOM_RECOVERY_KEYMAPPING := #TODO: Add me
+BOARD_HAS_NO_SELECT_BUTTON := true
+BOARD_RECOVERY_SWIPE := true
+RECOVERY_GRAPHICS_USE_LINELENGTH := true
+RECOVERY_SDCARD_ON_DATA := true
+TARGET_RECOVERY_FSTAB := device/samsung/a9/ramdisk/fstab.qcom
+TARGET_RECOVERY_QCOM_RTC_FIX := true
+TW_BRIGHTNESS_PATH := #TODO: Add me
+TW_EXTERNAL_STORAGE_MOUNT_POINT := "external_sd"
+TW_EXTERNAL_STORAGE_PATH := "/external_sd"
+TW_HAS_DOWNLOAD_MODE := true
+TW_INTERNAL_STORAGE_MOUNT_POINT := "data"
+TW_INTERNAL_STORAGE_PATH := "/data/media"
+TW_MAX_BRIGHTNESS := 255
+TW_NEW_ION_HEAP := true
+TW_NO_REBOOT_BOOTLOADER := true
+TW_NO_USB_STORAGE := true
+TW_TARGET_USES_QCOM_BSP := true
+
+# Recovery
+TARGET_RECOVERY_FSTAB := device/samsung/a9/ramdisk/fstab.qcom
+
+# RIL #TODO: Add me
+# BOARD_RIL_CLASS := ../../../device/samsung/a9/ril/
+
+# SELinux
+include device/qcom/sepolicy/sepolicy.mk
+BOARD_SEPOLICY_DIRS += device/samsung/a9/sepolicy
+
+# Wifi
+BOARD_HAS_QCOM_WLAN 		 := true
+BOARD_HAS_QCOM_WLAN_SDK 	 := true
+BOARD_HOSTAPD_DRIVER 		 := NL80211
+BOARD_HOSTAPD_PRIVATE_LIB 	 := lib_driver_cmd_qcwcn
+BOARD_WLAN_DEVICE 		 := qcwcn
+BOARD_WPA_SUPPLICANT_DRIVER 	 := NL80211
+BOARD_WPA_SUPPLICANT_PRIVATE_LIB := lib_driver_cmd_qcwcn
+TARGET_PROVIDES_WCNSS_QMI        := true #TODO: Do I ?
+TARGET_USES_QCOM_WCNSS_QMI 	 := true #TODO: Do I ?
+TARGET_USES_WCNSS_CTRL 		 := true #TODO: Do I ?
+WIFI_DRIVER_FW_PATH_AP 		 := "ap"
+WIFI_DRIVER_FW_PATH_STA 	 := "sta"
+WPA_SUPPLICANT_VERSION 		 := VER_0_8_X
+
+# Enable dex pre-opt to speed up initial boot
+ifneq ($(TARGET_USES_AOSP),true)
+  ifeq ($(HOST_OS),linux)
+    ifeq ($(WITH_DEXPREOPT),)
+      WITH_DEXPREOPT := true
+      ifneq ($(TARGET_BUILD_VARIANT),user)
+        # Retain classes.dex in APK's for non-user builds
+        DEX_PREOPT_DEFAULT := nostripping
+      endif
+    endif
+  endif
+endif
