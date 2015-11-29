@@ -1,23 +1,115 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--Copyright (c) 2012-2015, The Linux Foundation. All rights reserved
+<!--
+    Copyright (c) 2015, The Linux Foundation. All rights reserved.
 
-    Not a Contribution, Apache license notifications and license are retained
-    for attribution purposes only.
+    Redistribution and use in source and binary forms, with or without
+    modification, are permitted provided that the following conditions are
+    met:
+        * Redistributions of source code must retain the above copyright
+          notice, this list of conditions and the following disclaimer.
+        * Redistributions in binary form must reproduce the above
+          copyright notice, this list of conditions and the following
+          disclaimer in the documentation and/or other materials provided
+          with the distribution.
+        * Neither the name of The Linux Foundation nor the names of its
+          contributors may be used to endorse or promote products derived
+          from this software without specific prior written permission.
 
-    Licensed under the Apache License, Version 2.0 (the "License"); you
-    may not use this file except in compliance with the License.  You may
-    obtain a copy of the License at
-
-    http://www.apache.org/licenses/LICENSE-2.0
-
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
-    implied.  See the License for the specific language governing
-    permissions and limitations under the License.
+    THIS SOFTWARE IS PROVIDED "AS IS" AND ANY EXPRESS OR IMPLIED
+    WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+    MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NON-INFRINGEMENT
+    ARE DISCLAIMED.  IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS
+    BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+    CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+    SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR
+    BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+    WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE
+    OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
+    IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE
 -->
 
 <resources>
+
+   <!-- Vibrator pattern for feedback about touching a virtual key -->
+   <integer-array name="config_virtualKeyVibePattern">
+       <item>0</item>
+       <item>20</item>
+       <item>30</item>
+       <item>50</item>
+   </integer-array>
+
+   <!-- Operating volatage for bluetooth controller. 0 by default-->
+   <integer translatable="false" name="config_bluetooth_operating_voltage_mv">3300</integer>
+
+   <!-- Whether cpu boost is enabled for overscroller fling. -->
+   <bool name="config_enableCpuBoostForOverScrollerFling">true</bool>
+   <integer-array name="flingboost_param_value">
+       <item>0x40C00000</item> <!-- SCHEDBOOST resource opcode-->
+       <item>0x1</item>        <!-- SCHEDBOOST resource value-->
+       <item>0x40800000</item> <!-- CPUBOOST_MIN_FREQ resource opcode-->
+       <item>0x514</item>      <!-- CPUBOOST MIN_FREQ resource value-->
+       <item>0x40C04000</item> <!-- SCHED_PREFER_IDLE resource opcode -->
+       <item>0x1</item>        <!-- SCHED_PREFER_IDLE resource value -->
+   </integer-array>
+   <!-- Whether cpu boost is enabled for horizontal scroll. -->
+   <bool name="config_enableCpuBoostForScroller">true</bool>
+   <integer-array name="scrollboost_param_value">
+       <item>0x40C00000</item> <!-- SCHEDBOOST resource opcode-->
+       <item>0x1</item>        <!-- SCHEDBOOST resource value-->
+       <item>0x40800000</item> <!-- CPUBOOST_MIN_FREQ resource opcode-->
+       <item>0x514</item>      <!-- CPUBOOST MIN_FREQ resource value-->
+       <item>0x40C04000</item> <!-- SCHED_PREFER_IDLE resource opcode -->
+       <item>0x1</item>        <!-- SCHED_PREFER_IDLE resource value -->
+   </integer-array>
+   <!-- Whether cpu boost is enabled for application's 1st launch. -->
+   <bool name="config_enableCpuBoostForAppLaunch">true</bool>
+   <integer name="launchboost_timeout_param">2000</integer>
+   <integer-array name="launchboost_param_value">
+       <item>0x40C00000</item> <!-- SCHEDBOOST resource opcode-->
+       <item>0x1</item>        <!-- SCHEDBOOST resource value-->
+       <item>0x40800000</item> <!-- CPUBOOST_MIN_FREQ resource opcode-->
+       <item>0x5DC</item>      <!-- CPUBOOST MIN_FREQ resource value-->
+       <item>0x40400000</item> <!-- DISABLE_POWER_COLLAPSE resource opcode-->
+       <item>0x1</item>        <!-- DISABLE_POWER_COLLAPSE resource value-->
+       <item>0x41000000</item> <!-- Minimum number of cores online resource opcode-->
+       <item>0x4</item>        <!-- Minimum number of cores online resource value-->
+       <item>0x42804000</item> <!-- GPU_MIN_PWRLVL resource opcode-->
+       <item>0x1</item>        <!-- GPU_MIN_PWRLVL resource value-->
+<!--   <item>          </item>  KSMBOOST resource opcode -->
+<!--   <item>0x0</item>         KSMBOOST resource value -->
+   </integer-array>
+   <!-- Whether packing disable is enabled.  -->
+   <bool name="config_disablePacking">true</bool>
+   <integer name="disablepacking_timeout_param">5000</integer>
+   <integer-array name="launchboost_packing_param_value">
+       <item>0x40C04000</item> <!-- SCHED_PREFER_IDLE resource opcode -->
+       <item>0x1</item>        <!-- SCHED_PREFER_IDLE resource value -->
+       <item>0x40C0C000</item> <!-- SCHED_SMALL_TASK resource opcode -->
+       <item>0x1</item>        <!-- SCHED_SMALL_TASK resource value -->
+       <item>0x40C14000</item> <!-- SCHED_IDLE_NR_RUN resource opcode -->
+       <item>0x1</item>        <!-- SCHED_IDLE_NR_RUN resource value -->
+       <item>0x40C10000</item> <!-- SCHED_IDLE_LOAD resource opcode -->
+       <item>0x1</item>        <!-- SCHED_IDLE_LOAD resource value -->
+   </integer-array>
+   <!-- Whether cpu boost is enabled for animation during exit and entry -->
+   <bool name="config_enablePerfBoostForAnimation">true</bool>
+   <integer name="animationboost_timeout_param">600</integer>
+   <integer-array name="animationboost_param_value">
+       <item>0x40C00000</item> <!-- SCHEDBOOST resource opcode-->
+       <item>0x1</item>        <!-- SCHEDBOOST resource value-->
+       <item>0x40800000</item> <!-- CPUBOOST_MIN_FREQ resource opcode-->
+       <item>0x44C</item>      <!-- CPUBOOST MIN_FREQ resource value-->
+       <item>0x42804000</item> <!-- GPU_MIN_PWRLVL resource opcode-->
+       <item>0x1</item>        <!-- GPU_MIN_PWRLVL resource value-->
+   </integer-array>
+   <!-- Indicate whether to allow the device to suspend when the screen is off
+   due to the proximity sensor.  This resource should only be set to true
+   if the sensor HAL correctly handles the proximity sensor as a wake-up source.
+   Otherwise, the device may fail to wake out of suspend reliably.
+   The default is false. -->
+   <bool name="config_suspendWhenScreenOffDueToProximity">true</bool>
+
+   <!-- Should the device show AM/PM in unlock screen -->
 
     <!-- Set to true to add links to Cell Broadcast app from Settings and MMS app. -->
     <bool name="config_cellBroadcastAppLinks">true</bool>
@@ -49,7 +141,7 @@
     <string-array translatable="false" name="networkAttributes">
         <item>"wifi,1,1,1,-1,true"</item>
         <item>"mobile,0,0,0,-1,true"</item>
-        <item>"mobile_mms,2,0,2,60000,true"</item>
+        <item>"mobile_mms,2,0,4,60000,true"</item>
         <item>"mobile_supl,3,0,2,60000,true"</item>
         <item>"mobile_dun,4,0,2,60000,true"</item>
         <item>"mobile_hipri,5,0,3,60000,true"</item>
@@ -197,11 +289,6 @@
     <!-- Whether camera shutter sound is forced or not  (country specific). -->
     <bool name="config_camera_sound_forced">true</bool>
 
-    <!-- Configuration to enable non-default PDP during IWLAN -->
-    <bool name="config_feature_iwlan_enabled">true</bool>
-
-    <!-- Is the device capable of supporting digital pen -->
-    <bool name="config_digitalPenCapable">false</bool>
 
     <!-- Flag specifying whether VoLTE is available on device -->
     <bool name="config_device_volte_available">true</bool>
@@ -241,95 +328,13 @@
     <!--  Define Google play service package for FRP-->
     <string name="config_persistentDataPackageName" translatable="false">com.google.android.gms</string>
 
-    <!-- Config to show/hide Video quality toast -->
-    <bool name="config_display_video_quality_toast">false</bool>
+    <!--Fully qualified class name of the plugin which would be
+         dynamically loaded by TelephonyPluginDelegate-->
+    <string name="telephony_plugin_class_name" translatable="false">com.qti.internal.telephony.QtiTelephonyPlugin</string>
 
-    <!-- Config to show/hide call session event toast like player start/stop -->
-    <bool name="config_call_session_event_toast">false</bool>
-
-   <!-- Vibrator pattern for feedback about touching a virtual key -->
-   <integer-array name="config_virtualKeyVibePattern">
-       <item>0</item>
-       <item>20</item>
-       <item>30</item>
-       <item>50</item>
-   </integer-array>
-   <!-- Whether cpu boost is enabled for overscroller fling. -->
-   <bool name="config_enableCpuBoostForOverScrollerFling">true</bool>
-   <integer-array name="flingboost_param_value">
-       <item>0x40C00000</item> <!-- SCHEDBOOST resource opcode-->
-       <item>0x1</item>        <!-- SCHEDBOOST resource value-->
-       <item>0x40800000</item> <!-- CPUBOOST_MIN_FREQ resource opcode-->
-       <item>0x514</item>      <!-- CPUBOOST MIN_FREQ resource value-->
-       <item>0x40C04000</item> <!-- SCHED_PREFER_IDLE resource opcode -->
-       <item>0x1</item>        <!-- SCHED_PREFER_IDLE resource value -->
-   </integer-array>
-   <!-- Whether cpu boost is enabled for horizontal scroll. -->
-   <bool name="config_enableCpuBoostForScroller">true</bool>
-   <integer-array name="scrollboost_param_value">
-       <item>0x40C00000</item> <!-- SCHEDBOOST resource opcode-->
-       <item>0x1</item>        <!-- SCHEDBOOST resource value-->
-       <item>0x40800000</item> <!-- CPUBOOST_MIN_FREQ resource opcode-->
-       <item>0x514</item>      <!-- CPUBOOST MIN_FREQ resource value-->
-       <item>0x40C04000</item> <!-- SCHED_PREFER_IDLE resource opcode -->
-       <item>0x1</item>        <!-- SCHED_PREFER_IDLE resource value -->
-   </integer-array>
-   <!-- Whether cpu boost is enabled for application's 1st launch. -->
-   <bool name="config_enableCpuBoostForAppLaunch">true</bool>
-   <integer name="launchboost_timeout_param">2000</integer>
-   <integer-array name="launchboost_param_value">
-       <item>0x40C00000</item> <!-- SCHEDBOOST resource opcode-->
-       <item>0x1</item>        <!-- SCHEDBOOST resource value-->
-       <item>0x40800000</item> <!-- CPUBOOST_MIN_FREQ resource opcode-->
-       <item>0x5DC</item>      <!-- CPUBOOST MIN_FREQ resource value-->
-       <item>0x40400000</item> <!-- DISABLE_POWER_COLLAPSE resource opcode-->
-       <item>0x1</item>        <!-- DISABLE_POWER_COLLAPSE resource value-->
-       <item>0x41000000</item> <!-- Minimum number of cores online resource opcode-->
-       <item>0x4</item>        <!-- Minimum number of cores online resource value-->
-       <item>0x42804000</item> <!-- GPU_MIN_PWRLVL resource opcode-->
-       <item>0x1</item>        <!-- GPU_MIN_PWRLVL resource value-->
-<!--   <item>          </item>  KSMBOOST resource opcode -->
-<!--   <item>0x0</item>         KSMBOOST resource value -->
-   </integer-array>
-   <integer name="disablepacking_timeout_param">5000</integer>
-   <integer-array name="launchboost_packing_param_value">
-       <item>0x40C04000</item> <!-- SCHED_PREFER_IDLE resource opcode -->
-       <item>0x1</item>        <!-- SCHED_PREFER_IDLE resource value -->
-       <item>0x40C0C000</item> <!-- SCHED_SMALL_TASK resource opcode -->
-       <item>0x1</item>        <!-- SCHED_SMALL_TASK resource value -->
-       <item>0x40C14000</item> <!-- SCHED_IDLE_NR_RUN resource opcode -->
-       <item>0x1</item>        <!-- SCHED_IDLE_NR_RUN resource value -->
-       <item>0x40C10000</item> <!-- SCHED_IDLE_LOAD resource opcode -->
-       <item>0x1</item>        <!-- SCHED_IDLE_LOAD resource value -->
-   </integer-array>
-   <!-- Whether cpu boost is enabled for PanelView fling -->
-   <bool name="config_enableCpuBoostForPanelViewFling">false</bool>
-   <integer-array name="panelview_flingboost_param_value">
-       <item>0x40C00000</item> <!-- SCHEDBOOST resource opcode-->
-       <item>0x1</item>        <!-- SCHEDBOOST resource value-->
-       <item>0x40800000</item> <!-- CPUBOOST_MIN_FREQ resource opcode-->
-       <item>0x514</item>      <!-- CPUBOOST MIN_FREQ resource value-->
-   </integer-array>
-   <!-- Whether cpu boost is enabled for animation during exit and entry -->
-   <bool name="config_enablePerfBoostForAnimation">true</bool>
-   <integer name="animationboost_timeout_param">600</integer>
-   <integer-array name="animationboost_param_value">
-       <item>0x40C00000</item> <!-- SCHEDBOOST resource opcode-->
-       <item>0x1</item>        <!-- SCHEDBOOST resource value-->
-       <item>0x40800000</item> <!-- CPUBOOST_MIN_FREQ resource opcode-->
-       <item>0x44C</item>      <!-- CPUBOOST MIN_FREQ resource value-->
-       <item>0x42804000</item> <!-- GPU_MIN_PWRLVL resource opcode-->
-       <item>0x1</item>        <!-- GPU_MIN_PWRLVL resource value-->
-   </integer-array>
-   <!-- Indicate whether to allow the device to suspend when the screen is off
-   due to the proximity sensor.  This resource should only be set to true
-   if the sensor HAL correctly handles the proximity sensor as a wake-up source.
-   Otherwise, the device may fail to wake out of suspend reliably.
-   The default is false. -->
-   <bool name="config_suspendWhenScreenOffDueToProximity">true</bool>
-
-   <!-- Should the device show AM/PM in unlock screen -->
-   <bool name="config_show_ampm_in_unlock_screen">true</bool>
+    <!--The locatiotion of .jar file which has the extended implementation
+         of telephony base classes.-->
+    <string name="telephony_plugin_lib_path" translatable="false">/system/framework/qti-telephony-common.jar</string>
 
     <!-- Enable overlay for all location components. -->
     <bool name="config_enableNetworkLocationOverlay" translatable="false">false</bool>

@@ -35,6 +35,9 @@ PRODUCT_PACKAGE_OVERLAYS := device/samsung/a9/overlay
 PRODUCT_LOCALES += th_TH vi_VN tl_PH hi_IN ar_EG ru_RU tr_TR pt_BR bn_IN mr_IN ta_IN te_IN zh_HK \
     in_ID my_MM km_KH sw_KE uk_UA pl_PL sr_RS sl_SI fa_IR kn_IN ml_IN ur_IN gu_IN or_IN
 
+# Default is nosdcard, S/W button enabled in resource
+PRODUCT_CHARACTERISTICS := nosdcard
+
 # Boot animation
 TARGET_SCREEN_HEIGHT := 1920
 TARGET_SCREEN_WIDTH := 1080
@@ -110,13 +113,20 @@ PRODUCT_PACKAGES += \
     libqcomvisualizer \
     libqcomvoiceprocessing
 
+# Reduce client buffer size for fast audio output tracks
+PRODUCT_PROPERTY_OVERRIDES += \
+     af.fast_track_multiplier=1
+
+# Low latency audio buffer size in frames
+PRODUCT_PROPERTY_OVERRIDES += \
+    audio_hal.period_size=192
+
 # Charger
 PRODUCT_PACKAGES += \
     charger_res_images
 
 # Dalvik
 PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.heapgrowthlimit=128m \
     dalvik.vm.heapminfree=4m \
     dalvik.vm.heapstartsize=16m
 
@@ -151,6 +161,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     gps.msm8952
 
+# Healthd
+PRODUCT_PACKAGES += \
+    libhealthd.msm
+
 # Keystore
 PRODUCT_PACKAGES += \
     keystore.msm8952
@@ -172,15 +186,17 @@ PRODUCT_PACKAGES += \
     libstagefright_soft_flacdec \
     qcmediaplayer
 
-PRODUCT_BOOT_JARS += \
-    qcmediaplayer \
-    vcard \
-    tcmiface
+PRODUCT_BOOT_JARS += qcmediaplayer \
+           qcom.fmradio
 
 PRODUCT_COPY_FILES += \
     frameworks/av/media/libstagefright/data/media_codecs_google_audio.xml:system/etc/media_codecs_google_audio.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_telephony.xml:system/etc/media_codecs_google_telephony.xml \
     frameworks/av/media/libstagefright/data/media_codecs_google_video.xml:system/etc/media_codecs_google_video.xml
+
+# MIDI feature
+PRODUCT_COPY_FILES += \
+       frameworks/native/data/etc/android.software.midi.xml:system/etc/permissions/android.software.midi.xml
 
 # Misc
 PRODUCT_PACKAGES += \
@@ -230,6 +246,10 @@ PRODUCT_DEFAULT_PROPERTY_OVERRIDES += \
     persist.sys.usb.config=mtp \
     ro.sys.usb.default.config=mtp \
     persist.sys.isUsbOtgEnabled=true
+
+# Verify
+PRODUCT_SUPPORTS_VERITY := true
+PRODUCT_SYSTEM_VERITY_PARTITION := /dev/block/bootdevice/by-name/system
 
 # Wi-Fi
 PRODUCT_PACKAGES += \

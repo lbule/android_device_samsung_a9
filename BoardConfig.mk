@@ -57,6 +57,8 @@ TARGET_KERNEL_SOURCE := #TODO: Add me
 TARGET_KERNEL_CONFIG := #TODO: Add me
 TARGET_KERNEL_CROSS_COMPILE_PREFIX := aarch64-linux-android-
 TARGET_USES_UNCOMPRESSED_KERNEL := false
+TARGET_USES_AOSP := false
+TARGET_KERNEL_APPEND_DTB := true
 
 # Qualcomm
 TARGET_USES_QCOM_BSP := true
@@ -118,6 +120,8 @@ TARGET_USES_OVERLAY := true
 USE_OPENGL_RENDERER := true
 HAVE_ADRENO_SOURCE:= false
 OVERRIDE_RS_DRIVER:= libRSDriver_adreno.so
+TARGET_FORCE_HWC_FOR_VIRTUAL_DISPLAYS := true
+MAX_VIRTUAL_DISPLAY_DIMENSION := 2048
 
 # dlmalloc
 MALLOC_IMPL := dlmalloc
@@ -133,13 +137,20 @@ EXTENDED_FONT_FOOTPRINT := true
 TARGET_GPS_HAL_PATH := device/samsung/a9/gps
 TARGET_NO_RPC := true
 
+# Healthd
+BOARD_HAL_STATIC_LIBRARIES := libhealthd.msm
+
 # HW Encryption
 TARGET_HW_DISK_ENCRYPTION := true
+TARGET_CRYPTFS_HW_PATH := device/qcom/common/cryptfs_hw
 
 # Init
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc.0/
 TARGET_RECOVERY_UPDATER_LIBS += librecovery_updater_msm
 TARGET_INIT_VENDOR_LIB := libinit_msm
+
+# libTS
+TARGET_TS_MAKEUP := true
 
 # Lights
 #TARGET_PROVIDES_LIBLIGHT := true #TODO: Add me
@@ -170,10 +181,11 @@ TARGET_PER_MGR_ENABLED := true
 TARGET_SYSTEM_PROP := device/samsung/a9/system.prop
 
 # Protobuf
-PROTOBUF_SUPPORTED := true
+PROTOBUF_SUPPORTED := false
 
 # Radio
 ADD_RADIO_FILES := true
+FEATURE_QCRIL_UIM_SAP_SERVER_MODE := true
 
 # Sensors
 USE_SENSOR_MULTI_HAL := true
@@ -224,14 +236,12 @@ WIFI_DRIVER_FW_PATH_STA 	 := "sta"
 WPA_SUPPLICANT_VERSION 		 := VER_0_8_X
 
 # Enable dex pre-opt to speed up initial boot
-ifneq ($(TARGET_USES_AOSP),true)
-  ifeq ($(HOST_OS),linux)
-    ifeq ($(WITH_DEXPREOPT),)
-      WITH_DEXPREOPT := true
-      ifneq ($(TARGET_BUILD_VARIANT),user)
-        # Retain classes.dex in APK's for non-user builds
-        DEX_PREOPT_DEFAULT := nostripping
-      endif
+ifeq ($(HOST_OS),linux)
+  ifeq ($(WITH_DEXPREOPT),)
+    WITH_DEXPREOPT := true
+    WITH_DEXPREOPT_PIC := true
+    ifneq ($(TARGET_BUILD_VARIANT),user)
+      # Retain classes.dex in APK's for non-user builds
+      DEX_PREOPT_DEFAULT := nostripping
     endif
   endif
-endif
