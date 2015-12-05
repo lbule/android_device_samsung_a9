@@ -118,6 +118,9 @@ audio.offload.video=true
 audio.offload.pcm.16bit.enable=true
 audio.offload.pcm.24bit.enable=true
 
+#Enable audio track offload by default
+audio.offload.track.enable=true
+
 #Enable music through deep buffer
 audio.deep_buffer.media=true
 
@@ -211,4 +214,7 @@ camera.display.lmax=1280x720
 
 #low power mode for camera
 camera.lowpower.record.enable=1
+
+#enable game colocation feature
+sched.colocate.enable=1
 
