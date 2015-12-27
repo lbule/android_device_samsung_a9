@@ -201,6 +201,8 @@ on post-fs-data
     # Create the directories used by CnE subsystem
     mkdir /data/connectivity 0771 system system
     chown system system /data/connectivity
+    mkdir /data/connectivity/wqeclient 0771 system system
+    chown system system /data/connectivity/wqeclient
 
     # Create the directories used by DPM subsystem
     mkdir /data/dpm 0771 system system
@@ -423,8 +425,20 @@ on property:wc_transport.start_hci=false
 
 service start_hci_filter /system/bin/wcnss_filter
     class late_start
-    user root
+    user bluetooth
     group bluetooth qcom_diag
+    disabled
+
+on property:wc_transport.start_root=true
+    start hci_filter_root
+
+on property:wc_transport.start_root=false
+    stop hci_filter_root
+
+service hci_filter_root /system/bin/wcnss_filter
+    class late_start
+    user bluetooth
+    group bluetooth qcom_diag system
     disabled
 
 service config_bluetooth /system/bin/sh /system/etc/init.qcom.bt.sh "onboot"
@@ -829,6 +843,7 @@ service hcidump /system/bin/sh /system/etc/hcidump.sh
 
 service charger /charger
     class charger
+    group system
     seclabel u:r:healthd:s0
 
 service ssr_diag /system/bin/ssr_diag
