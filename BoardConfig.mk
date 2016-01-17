@@ -91,7 +91,8 @@ BOARD_USES_ALSA_AUDIO := true
 # Bluetooth
 BOARD_BLUETOOTH_BDROID_BUILDCFG_INCLUDE_DIR := device/samsung/a9/bluetooth
 BOARD_HAVE_BLUETOOTH := true
-BOARD_HAVE_BLUETOOTH_QCOM := true
+# Disable QCOM Bluetooth
+# BOARD_HAVE_BLUETOOTH_QCOM := true
 BOARD_HAVE_BLUETOOTH_BCM := true #TODO: Do I ?
 
 # Camera
