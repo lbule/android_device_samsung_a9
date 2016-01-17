@@ -262,12 +262,4 @@ $(shell mkdir -p $(TARGET_OUT_ETC)/firmware/wlan/prima; \
         $(TARGET_OUT_ETC)/firmware/wlan/prima/WCNSS_wlan_dictionary.dat; \
         ln -sf /data/misc/wifi/WCNSS_qcom_cfg.ini \
         $(TARGET_OUT_ETC)/firmware/wlan/prima/WCNSS_qcom_cfg.ini)
-
-$(shell mkdir -p $(TARGET_OUT_ETC)/firmware/wlan/qca_cld; \
-	mkdir -p $(TARGET_OUT_ETC)/wifi \
-	cp $(LOCAL_PATH)/wifi/WCNSS_cfg.dat \
-	$(TARGET_OUT_ETC)/firmware/wlan/qca_cld; \
-	cp $(LOCAL_PATH)/wifi/WCNSS_qcom_sdio_cfg.ini $(TARGET_OUT_ETC)/wifi/; \
-        ln -sf /system/etc/wifi/WCNSS_qcom_sdio_cfg.ini \
-	$(TARGET_OUT_ETC)/firmware/wlan/qca_cld/WCNSS_qcom_cfg.ini)
 endif
