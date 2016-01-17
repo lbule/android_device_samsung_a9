@@ -40,7 +40,7 @@ TARGET_SCREEN_HEIGHT := 1920
 TARGET_SCREEN_WIDTH := 1080
 
 # AAPT
-PRODUCT_AAPT_CONFIG += xlarge large normal
+PRODUCT_AAPT_CONFIG += normal
 PRODUCT_AAPT_PREF_CONFIG := xhdpi
 
 # Permissions
@@ -116,7 +116,7 @@ PRODUCT_PACKAGES += \
 
 # Dalvik
 PRODUCT_PROPERTY_OVERRIDES += \
-    dalvik.vm.heapgrowthlimit=256m \
+    dalvik.vm.heapgrowthlimit=128m \
     dalvik.vm.heapminfree=4m \
     dalvik.vm.heapstartsize=16m
 
