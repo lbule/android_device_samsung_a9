@@ -1,22 +1,27 @@
 #
+# system.prop for a9
+persist.radio.snapshot_enabled=1
+persist.radio.snapshot_timer=22
+persist.radio.tdscdma_present=1
+ro.telephony.default_network=9,1
+ro.vendor.extension_library=libqti-perfd-client.so
+persist.radio.apm_sim_not_pwdn=1
+persist.radio.sib16_support=1
+persist.radio.custom_ecc=1
+persist.gps.qc_nlp_in_use=1
+persist.loc.nlp_name=com.qualcomm.location
+ro.gps.agps_provider=1
+ro.pip.gated=0
+
+#
 # system.prop for msm8952
 #
 
-rild.libpath=/vendor/lib64/libril-qc-qmi-1.so
-rild.libargs=-d /dev/smd0
-persist.rild.nitz_plmn=
-persist.rild.nitz_long_ons_0=
-persist.rild.nitz_long_ons_1=
-persist.rild.nitz_long_ons_2=
-persist.rild.nitz_long_ons_3=
-persist.rild.nitz_short_ons_0=
-persist.rild.nitz_short_ons_1=
-persist.rild.nitz_short_ons_2=
-persist.rild.nitz_short_ons_3=
-ril.subscription.types=NV,RUIM
+# set lcd density
+ro.sf.lcd_density=480
+
 DEVICE_PROVISIONED=1
-# Start in cdma mode
-ro.telephony.default_network=5
+
 
 debug.sf.hw=0
 debug.egl.hw=0
@@ -27,6 +32,8 @@ dev.pm.dyn_samplingrate=1
 persist.demo.hdmirotationlock=false
 debug.enable.sglscale=1
 persist.hwc.downscale_threshold=1.15
+# disable vsync for cpu render apps
+debug.cpurend.vsync=false
 
 #ro.hdmi.enable=true
 #tunnel.decode=true
@@ -39,7 +46,10 @@ qcom.hw.aac.encoder=true
 #
 # system props for the cne module
 #
-persist.cne.feature=1
+persist.cne.feature=0
+persist.cne.dpm=0
+persist.dpm.feature=0
+
 
 #system props for the MM modules
 media.stagefright.enable-player=true
@@ -71,7 +81,7 @@ voice.conc.fallbackpath=deep-buffer
 #
 # system props for the data modules
 #
-ro.use_data_netmgrd=true
+ro.use_data_netmgrd=false
 persist.data.netmgrd.qos.enable=true
 persist.data.mode=concurrent
 
@@ -129,7 +139,7 @@ use.voice.path.for.pcm.voip=true
 #System property for FM transmitter
 ro.fm.transmitter=false
 #enable dsp gapless mode by default
-audio.offload.gapless.enabled=true
+audio.offload.gapless.enabled=false
 
 #multi offload
 audio.offload.multiple.enabled=false
@@ -140,7 +150,7 @@ audio.safx.pbe.enabled=true
 audio.pp.asphere.enabled=false
 
 #Set composition for USB
-persist.sys.usb.config=diag,serial_smd,rmnet_ipa,adb
+#persist.sys.usb.config=mtp,adb
 
 #Set read only default composition for USB
 ro.sys.usb.default.config=diag,serial_smd,rmnet_ipa,adb
@@ -210,3 +220,19 @@ camera.lowpower.record.enable=1
 #enable game colocation feature
 sched.colocate.enable=1
 
+#set device emmc size
+ro.emmc_size=16GB
+
+# BigData for Performance
+sys.config.bigdata_enable=true
+sys.config.bigdata_mem_enable=true
+
+# SAMP_SPCM
+sys.config.samp_spcm_enable=true
+sys.config.spcm_kill_skip=true
+sys.config.spcm_db_enable=true
+sys.config.spcm_db_launcher=true
+sys.config.spcm_preload_enable=true
+
+# Disable navigation bar
+qemu.hw.mainkeys=1

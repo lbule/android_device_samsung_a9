@@ -28,4 +28,4 @@
 
 on early-init
     # Start QCE driver, needed to support MDTP in recovery
-    insmod /sbin/qcrypto_module.ko
+    #insmod /sbin/qcrypto_module.ko

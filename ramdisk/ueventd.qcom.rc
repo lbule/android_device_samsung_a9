@@ -246,3 +246,20 @@
 
 # Add device block for FRP
 /dev/block/bootdevice/by-name/config    0660   system     system
+
+# cpufreq_governor
+/sys/devices/system/cpu/cpu*	cpufreq/interactive/above_hispeed_delay    0660  system system
+/sys/devices/system/cpu/cpu*	cpufreq/interactive/align_windows          0660  system system
+/sys/devices/system/cpu/cpu*	cpufreq/interactive/boost                  0660  system system
+/sys/devices/system/cpu/cpu*	cpufreq/interactive/boostpulse             0660  system system
+/sys/devices/system/cpu/cpu*	cpufreq/interactive/boostpulse_duration    0660  system system
+/sys/devices/system/cpu/cpu*	cpufreq/interactive/go_hispeed_load        0660  system system
+/sys/devices/system/cpu/cpu*	cpufreq/interactive/hispeed_freq           0660  system system
+/sys/devices/system/cpu/cpu*	cpufreq/interactive/io_is_busy             0660  system system
+/sys/devices/system/cpu/cpu*	cpufreq/interactive/max_freq_hysteresis    0660  system system
+/sys/devices/system/cpu/cpu*	cpufreq/interactive/min_sample_time        0660  system system
+/sys/devices/system/cpu/cpu*	cpufreq/interactive/target_loads           0660  system system
+/sys/devices/system/cpu/cpu*	cpufreq/interactive/timer_rate             0660  system system
+/sys/devices/system/cpu/cpu*	cpufreq/interactive/timer_slack            0660  system system
+/sys/devices/system/cpu/cpu*	cpufreq/interactive/use_migration_notif    0660  system system
+/sys/devices/system/cpu/cpu*	cpufreq/interactive/use_sched_load         0660  system system
